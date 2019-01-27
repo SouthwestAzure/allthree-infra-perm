@@ -32,5 +32,6 @@ terraform apply
 First start with creating the Azure networking components.
 
 Create VNET & VNET Peering - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vnet-peering)
-
+Create Network Security Grooup - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/blob/master/nsg/main.tf)
+Create Virtual Machine, Network Interface Card, and L4 Load Balancer - 
 
