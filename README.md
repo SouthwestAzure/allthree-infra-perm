@@ -31,5 +31,6 @@ terraform apply
 
 First start with creating the Azure networking components.
 
-[Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vnet-peering)
+Create VNET & VNET Peering - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vnet-peering)
+
 
