@@ -20,7 +20,7 @@ You'll want to make a copy of the results, specifically the appId and password, 
 
 ### Azure Resource Setup Using Terraform
 
-We will use Terraform to create a Resource Group, Azure Container Registry and an AKS Cluster.
+We will use Terraform to create core infrastructure components in Azure. 
 [Click here](https://www.terraform.io/docs/providers/azurerm/index.html) to read more about Terraform
 and the Azure Resource Providers that it provides.
 
@@ -29,4 +29,8 @@ terraform init
 terraform apply  
 ```
 
-You can expect this process to take between 10 to 15 minutes, mostly because AKS takes a while to provision in Azure.
+First start with creating the Azure networking components.
+
+Create VNET & VNET Peering - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vnet-peering)
+
+
