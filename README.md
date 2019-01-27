@@ -39,3 +39,4 @@ Create Virtual Machine, NIC, and L4 Azure Load Balancer - [Click here](https://g
 
 Create an Azure Firewall - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/firewall)
 
+Create an AKS cluster - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/aks-deploy)
