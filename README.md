@@ -35,5 +35,5 @@ Create VNET & VNET Peering - [Click here](https://github.com/SouthwestAzure/allt
 
 Create Network Security Grooup - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/blob/master/nsg/main.tf)
 
-Create Virtual Machine, Network Interface Card, and L4 Load Balancer - [Click here] (https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vm-create)
+Create Virtual Machine, NIC, and L4 Azure Load Balancer - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vm-create)
 
