@@ -37,3 +37,5 @@ Create Network Security Grooup - [Click here](https://github.com/SouthwestAzure/
 
 Create Virtual Machine, NIC, and L4 Azure Load Balancer - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vm-create)
 
+Create an Azure Firewall - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/firewall)
+
