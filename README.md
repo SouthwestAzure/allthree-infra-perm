@@ -31,6 +31,6 @@ terraform apply
 
 First start with creating the Azure networking components.
 
-Create VNET, Subnets, VNET Peering, Network Security Groups, Virtual Machine, NIC, and L4 Azure Load Balancer, and the Azure Firewall - [Click here]
+Create VNET, Subnets, VNET Peering, Network Security Groups, Virtual Machine, NIC, and L4 Azure Load Balancer, and the Azure Firewall - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/networking)
 
-Create an AKS cluster - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/aks-deploy)
+Create an AKS cluster - [Click here]
