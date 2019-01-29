@@ -186,7 +186,7 @@ resource "azurerm_virtual_machine_extension" "test" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "sudo apt-get -y install nginx",
+        "commandToExecute": "sudo apt-get -y install nginx"
     }
 SETTINGS
 
