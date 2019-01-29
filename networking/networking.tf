@@ -127,7 +127,7 @@ resource "azurerm_virtual_machine" "main" {
     resource_group_name   = "${azurerm_resource_group.rg.name}"
     network_interface_ids = ["${element(azurerm_network_interface.nic.*.id, count.index)}"]
     vm_size               = "Standard_DS2_v2_Promo"
-
+ 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
   # delete_os_disk_on_termination = true
 
@@ -141,6 +141,7 @@ resource "azurerm_virtual_machine" "main" {
       sku       = "16.04-LTS"
       version   = "latest"
   }
+
   storage_os_disk {
      name              = "myosdisk1"
      caching           = "ReadWrite"
@@ -157,6 +158,31 @@ resource "azurerm_virtual_machine" "main" {
      disable_password_authentication = false
   }
 }
+
+resource "azurerm_virtual_machine_extension" "test" {
+  name                 = "hostname"
+  location             = "${azurerm_resource_group.rg.location}"
+  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  virtual_machine_name = "${azurerm_virtual_machine.main.name}"
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+        "commandToExecute": "sudo apt-key fingerprint 0EBFCD88",
+        "commandToExecute": "sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable'",
+        "commandToExecute": "sudo apt-get -y install docker.io",
+        "commandToExecute": "sudo docker run --name docker-nginx -d -p 80:80 nginx"
+    }
+SETTINGS
+
+  tags {
+    environment = "Production"
+  }
+}
+
 
 resource "azurerm_network_interface_nat_rule_association" "nic" {
   network_interface_id  = "${azurerm_network_interface.nic.id}"
