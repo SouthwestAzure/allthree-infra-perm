@@ -159,6 +159,22 @@ resource "azurerm_virtual_machine" "main" {
   }
 }
 
+resource "azurerm_managed_disk" "test" {
+  name                 = "mydatadisk-disk1"
+  location             = "${azurerm_resource_group.rg.location}"
+  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  storage_account_type = "Standard_LRS"
+  create_option        = "Empty"
+  disk_size_gb         = 10
+}
+
+resource "azurerm_virtual_machine_data_disk_attachment" "test" {
+  managed_disk_id    = "${azurerm_managed_disk.test.id}"
+  virtual_machine_id = "${azurerm_virtual_machine.main.id}"
+  lun                = "10"
+  caching            = "ReadWrite"
+}
+
 resource "azurerm_virtual_machine_extension" "test" {
   name                 = "hostname"
   location             = "${azurerm_resource_group.rg.location}"
@@ -170,13 +186,27 @@ resource "azurerm_virtual_machine_extension" "test" {
 
   settings = <<SETTINGS
     {
-        "commandToExecute": "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
-        "commandToExecute": "sudo apt-key fingerprint 0EBFCD88",
-        "commandToExecute": "sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable'",
-        "commandToExecute": "sudo apt-get -y install docker.io",
-        "commandToExecute": "sudo docker run --name docker-nginx -d -p 80:80 nginx"
+        "commandToExecute": "sudo apt-get -y install nginx",
     }
 SETTINGS
+
+  tags {
+    environment = "Production"
+  }
+}
+
+
+resource "azurerm_route_table" "test" {
+  name                          = "routetable"
+  location                      = "${azurerm_resource_group.rg.location}"
+  resource_group_name           = "${azurerm_resource_group.rg.name}"
+  disable_bgp_route_propagation = false
+
+  route {
+    name           = "route1"
+    address_prefix = "10.1.0.0/16"
+    next_hop_type  = "vnetlocal"
+  }
 
   tags {
     environment = "Production"
