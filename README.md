@@ -1,9 +1,9 @@
 # AllThree Demo
 
 ## Contacts
-**Name:** Chris Wiederspan  
-**Role:** Microsoft Azure App Dev Specialist  
-**Email:** chris.wiederspan@microsoft.com
+**Name:** Chris Wiederspan, Jordan Nielsen  
+**Role:** Microsoft Azure App Dev Specialist 
+**Email:** chris.wiederspan@microsoft.com, jonielse@microsoft.com
 
 ## Prerequisites
 
@@ -31,12 +31,6 @@ terraform apply
 
 First start with creating the Azure networking components.
 
-Create VNET, Subnets & VNET Peering - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vnet-peering)
+1. Create VNET, Subnets, VNET Peering, Network Security Groups, Virtual Machine, NIC, and L4 Azure Load Balancer, and the Azure Firewall - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/networking)
 
-Create Network Security Grooup - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/blob/master/nsg/main.tf)
-
-Create Virtual Machine, NIC, and L4 Azure Load Balancer - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/vm-create)
-
-Create an Azure Firewall - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/firewall)
-
-Create an AKS cluster - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/aks-deploy)
+2. Create an AKS cluster that leverages Advanced Networking and places the cluster in a subnet created in step 1 - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/aks-deploy)
