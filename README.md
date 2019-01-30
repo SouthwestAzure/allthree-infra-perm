@@ -52,4 +52,6 @@ First start with creating the Azure networking components.
 
 1. Create VNET, Subnets, VNET Peering, Network Security Groups, Virtual Machine, NIC, and L4 Azure Load Balancer, and the Azure Firewall - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/networking)
 
+Before creating the AKS cluster, make sure and add your Service Principal credentials to the variables file in the aks-deploy folder. 
+
 2. Create an AKS cluster that leverages Advanced Networking and places the cluster in a subnet created in step 1 - [Click here](https://github.com/SouthwestAzure/allthree-infra-perm/tree/master/aks-deploy)
