@@ -32,6 +32,13 @@ resource "azurerm_subnet" "firewall" {
   address_prefix       = "10.0.2.0/24"
 }
 
+resource "azurerm_subnet" "firewall" {
+  name                 = "test"
+  resource_group_name  = "${azurerm_resource_group.rg.name}"
+  virtual_network_name = "${azurerm_virtual_network.vnet2.name}"
+  address_prefix       = "192.168.0.0/24"
+}
+
 
 resource "azurerm_virtual_network_peering" "peer1" {
   name                         = "vNet1-to-vNet2"
