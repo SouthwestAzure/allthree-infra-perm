@@ -1,31 +1,43 @@
-data "azurerm_resource_group" "hub" {
-    name     = "myrg"
+resource "azurerm_resource_group" "k8s" {
+    name     = "${var.resource_group_name}"
+    location = "${var.location}"
 }
 
-data "azurerm_log_analytics_workspace" "workshop" {
-    name      		= "jnworkspace38394"
-    resource_group_name = "${data.azurerm_resource_group.hub.name}"
+data "azurerm_resource_group" "rg" {
+  name = "myrg"
 }
 
+data "azurerm_subnet" "subnet" {
+  name                 = "test"
+  virtual_network_name = "myrg-vnet2"
+  resource_group_name  = "${data.azurerm_resource_group.rg.name}"
+}
 
-#resource "azurerm_log_analytics_solution" "test" {
-#    solution_name         = "ContainerInsights"
-#    location              = "West US 2"
-#    resource_group_name   = "${data.azurerm_resource_group.hub.name}"
-#    workspace_resource_id = "${data.azurerm_log_analytics_workspace.workshop.workspace_id}"
-#    workspace_name        = "${data.azurerm_log_analytics_workspace.workshop.name}"
-#
-#    plan {
-#        publisher = "Microsoft"
-#        product   = "OMSGallery/ContainerInsights"
-#    }
-#}
+resource "azurerm_log_analytics_workspace" "test" {
+    name                = "${var.log_analytics_workspace_name}"
+    location            = "${var.log_analytics_workspace_location}"
+    resource_group_name = "${azurerm_resource_group.k8s.name}"
+    sku                 = "${var.log_analytics_workspace_sku}"
+}
+
+resource "azurerm_log_analytics_solution" "test" {
+    solution_name         = "ContainerInsights"
+    location              = "${azurerm_log_analytics_workspace.test.location}"
+    resource_group_name   = "${azurerm_resource_group.k8s.name}"
+    workspace_resource_id = "${azurerm_log_analytics_workspace.test.id}"
+    workspace_name        = "${azurerm_log_analytics_workspace.test.name}"
+
+    plan {
+        publisher = "Microsoft"
+        product   = "OMSGallery/ContainerInsights"
+    }
+}
 
 resource "azurerm_kubernetes_cluster" "k8s" {
-    name                = "all3cluster"
-    location            = "West US 2"
-    resource_group_name = "${data.azurerm_resource_group.hub.name}"
-    dns_prefix          = "all3cluster"
+    name                = "${var.cluster_name}"
+    location            = "${azurerm_resource_group.k8s.location}"
+    resource_group_name = "${azurerm_resource_group.k8s.name}"
+    dns_prefix          = "${var.dns_prefix}"
 
     linux_profile {
         admin_username = "ubuntu"
@@ -41,6 +53,8 @@ resource "azurerm_kubernetes_cluster" "k8s" {
         vm_size         = "Standard_DS1_v2"
         os_type         = "Linux"
         os_disk_size_gb = 30
+
+        vnet_subnet_id = "${data.azurerm_subnet.subnet.id}"
     }
 
     service_principal {
@@ -51,7 +65,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     addon_profile {
         oms_agent {
         enabled                    = true
-        log_analytics_workspace_id = "${data.azurerm_log_analytics_workspace.workshop.id}"
+        log_analytics_workspace_id = "${azurerm_log_analytics_workspace.test.id}"
         }
     }
 

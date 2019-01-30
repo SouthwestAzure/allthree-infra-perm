@@ -56,14 +56,14 @@ resource "azurerm_virtual_network_peering" "peer2" {
 
 resource "azurerm_public_ip" "test" {
   name                         = "PublicIPForLB"
-  location                     = "South Central US"
+  location                     = "West US 2"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   public_ip_address_allocation = "static"
 }
 
 resource "azurerm_lb" "test" {
   name                = "TestLoadBalancer"
-  location            = "South Central US"
+  location            = "West US 2"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   frontend_ip_configuration {
@@ -253,7 +253,7 @@ resource "azurerm_subnet_network_security_group_association" "test" {
 
 resource "azurerm_public_ip" "azurefirewallpip" {
   name                         = "PublicIPForFW"
-  location                     = "South Central US"
+  location                     = "West US 2"
   resource_group_name          = "${azurerm_resource_group.rg.name}"
   public_ip_address_allocation = "static"
   sku                          = "Standard"
@@ -261,7 +261,7 @@ resource "azurerm_public_ip" "azurefirewallpip" {
 
 resource "azurerm_firewall" "test" {
   name                = "AzureFirewall"
-  location            = "South Central US"
+  location            = "West US 2"
   resource_group_name = "${azurerm_resource_group.rg.name}"
 
   ip_configuration {

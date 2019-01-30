@@ -1,11 +1,17 @@
 variable "client_id" {
-    default = "aca05363-4649-4bbb-a87f-e33e47b77387"
+    default = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 }
 variable "client_secret" {
-    default = "aec9e3c4-8c5a-4ac3-95b3-c2e4832c942d"
+    default = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 }
+
+variable "resource_group_name" {
+    default = "k8s"
+
+}
+
 
 variable "agent_count" {
     default = 3
@@ -24,19 +30,19 @@ variable cluster_name {
 }
 
 variable location {
-    default = "South Central US"
+    default = "West US 2"
 }
 
 variable log_analytics_workspace_name {
-    default = "testLogAnalyticsWorkspaceName"
+    default = "jnk8sLogAnalyticsWorkspaceName"
 }
 
 # refer https://azure.microsoft.com/global-infrastructure/services/?products=monitor for log analytics available regions
 variable log_analytics_workspace_location {
-    default = "eastus"
+    default = "West US 2"
 }
 
 # refer https://azure.microsoft.com/pricing/details/monitor/ for log analytics pricing 
 variable log_analytics_workspace_sku {
-    default = "PerGB2018"
+    default = "Standard"
 }

@@ -3,7 +3,7 @@ variable "prefix" {
 }
 
 variable "location" {
-  default = "South Central US"
+  default = "West US 2"
 }
 
 variable "resource_group" {
