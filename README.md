@@ -18,6 +18,21 @@ You'll want to make a copy of the results, specifically the appId and password, 
 
 ![Credential screenshot](/assets/service-principal.png)
 
+Finally, it's possible to test these values work as expected by first logging in:
+
+$ az login --service-principal -u CLIENT_ID -p CLIENT_SECRET --tenant TENANT_ID
+
+As we've obtained the credentials for this Service Principal - it's possible to configure them in a few different ways. A very common way is to use Environment Variables. 
+
+Add these entries to the .bash_profile. 
+
+$ export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+$ export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
+$ export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
+$ export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
+
+source .bash_profile
+
 ### Azure Resource Setup Using Terraform
 
 We will use Terraform to create core infrastructure components in Azure. 
