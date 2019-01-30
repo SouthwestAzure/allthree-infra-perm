@@ -26,12 +26,16 @@ As we've obtained the credentials for this Service Principal - it's possible to 
 
 Add these entries to the .bash_profile. 
 
-`$ export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"`
-`$ export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"`
-`$ export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"`
-`$ export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"`
+```$ export ARM_CLIENT_ID="00000000-0000-0000-0000-000000000000"
 
-`source .bash_profile`
+$ export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
+
+$ export ARM_SUBSCRIPTION_ID="00000000-0000-0000-0000-000000000000"
+
+$ export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
+
+source .bash_profile
+```
 
 ### Azure Resource Setup Using Terraform
 
